@@ -32,13 +32,13 @@ function create_count_by_month(dbname) {
         },
         {
             $addFields: { 
-                month: "$_id"
+                MOB: "$_id"
             }
         },
         {
             $project: {
                 _id: 0,
-                month: 1,
+                MOB: 1,
                 borncount: 1
             }
         },
