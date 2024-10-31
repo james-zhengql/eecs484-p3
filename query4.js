@@ -25,10 +25,10 @@ function suggest_friends(year_diff, dbname) {
         db.users.find({
             gender:"female",
             "hometown.city":userA.hometown.city,
-            YOB:{$gte:userA.YOB-year_diff,$lte:userA.YOB+year_diff}
+            YOB:{$gt:userA.YOB-year_diff,$lt:userA.YOB+year_diff}
         }).forEach(userB => {
-            if (userA.friends.inedexOf(userB.user_id) === -1){
-                pairs.push(userA.user_id,userB.user_id);
+            if (userA.friends.indexOf(userB.user_id) === -1 && userB.friends.indexOf(userA.user_id)===-1){
+                pairs.push([userA.user_id,userB.user_id]);
             }
         })
     });
